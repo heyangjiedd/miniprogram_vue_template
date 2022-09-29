@@ -11,6 +11,7 @@ module.exports = {
     'import/extensions': 0,
     'space-before-function-paren': 0,
     'vue/no-v-model-argument': 0,
-    'vue/multi-word-component-names': 0
-  }
+    'vue/multi-word-component-names': 0,
+    'comma-dangle': 0,
+  },
 };

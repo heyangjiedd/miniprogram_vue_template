@@ -11,5 +11,6 @@ module.exports = {
   vueIndentScriptAndStyle: true,
   quoteProps: 'as-needed',
   arrowParens: 'always',
-  spacedComment: true
+  trailingComma: 'all',
+  spacedComment: true,
 };
