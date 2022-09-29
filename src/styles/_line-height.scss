@@ -1,0 +1,10 @@
+$line-height: 200;
+
+@for $height from 0 through $line-height {
+  @if $height {
+    .lh-#{$height} {
+      line-height: $height * 1px;
+    }
+  }
+}
+$font-size: 50;

@@ -1,0 +1,41 @@
+$flex-direction: (row, column);
+$flex-size: 10;
+
+$flex-type: (
+  start: flex-start,
+  center: center,
+  end: flex-end,
+  between: space-between,
+  around: space-around,
+);
+
+@each $dirction in $flex-direction {
+  .flex-#{$dirction} {
+    display: flex;
+    flex-direction: $dirction;
+  }
+}
+
+@for $size from 1 to $flex-size {
+  .flex-#{$size} {
+    flex: $size;
+  }
+}
+
+@each $type, $value in $flex-type {
+  .align-items-#{$type} {
+    align-items: $value;
+  }
+
+  .justify-content-#{$type} {
+    justify-content: $value;
+  }
+}
+
+@each $value, $jc, $ai in (cc, center, center), (vc, normal, center), (bc, space-between, center) {
+  .flex-row-#{$value} {
+    display: flex;
+    justify-content: $jc;
+    align-items: $ai;
+  }
+}

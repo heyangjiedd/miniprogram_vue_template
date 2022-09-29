@@ -1,0 +1,53 @@
+$distance: 200;
+
+@for $value from 0 through $distance {
+  @if $value >= 0 {
+    .p-#{$value} {
+      padding: $value * 1px;
+    }
+
+    .pl-#{$value} {
+      padding-left: $value * 1px;
+    }
+
+    .pr-#{$value} {
+      padding-right: $value * 1px;
+    }
+
+    .pt-#{$value} {
+      padding-top: $value * 1px;
+    }
+
+    .pb-#{$value} {
+      padding-bottom: $value * 1px;
+    }
+
+    .m-#{$value} {
+      margin: $value * 1px;
+    }
+
+    .ml-#{$value} {
+      margin-left: $value * 1px;
+    }
+
+    .mr-#{$value} {
+      margin-right: $value * 1px;
+    }
+
+    .mt-#{$value} {
+      margin-top: $value * 1px;
+    }
+
+    .mb-#{$value} {
+      margin-bottom: $value * 1px;
+    }
+
+    .hg-#{$value} {
+      height: $value * 1px;
+    }
+
+    .wd-#{$value} {
+      width: $value * 1px;
+    }
+  }
+}

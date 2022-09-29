@@ -1,0 +1,49 @@
+@import './var';
+
+@each $color-name, $color in $colors-bg {
+  .bg-#{'' + $color-name} {
+    background: $color;
+  }
+}
+
+@each $color-name, $color in $colors-cl {
+  .cl-#{'' + $color-name} {
+    color: $color;
+  }
+}
+
+@each $color-name, $color in $colors-br {
+  .br-#{'' + $color-name} {
+    border-color: $color !important;
+  }
+  .br1-#{'' + $color-name} {
+    border-color: $color !important;
+  }
+  .br2-#{'' + $color-name} {
+    border-color: $color !important;
+  }
+  .br-l-#{'' + $color-name} {
+    border-left: 1px solid $color !important;
+  }
+  .br-l2-#{'' + $color-name} {
+    border-left: 2px solid $color !important;
+  }
+  .br-r-#{'' + $color-name} {
+    border-right: 1px solid $color !important;
+  }
+  .br-r2-#{'' + $color-name} {
+    border-right: 2px solid $color !important;
+  }
+  .br-t-#{'' + $color-name} {
+    border-top: 1px solid $color !important;
+  }
+  .br-t2-#{'' + $color-name} {
+    border-top: 2px solid $color !important;
+  }
+  .br-b-#{'' + $color-name} {
+    border-bottom: 1px solid $color !important;
+  }
+  .br-b2-#{'' + $color-name} {
+    border-bottom: 2px solid $color !important;
+  }
+}

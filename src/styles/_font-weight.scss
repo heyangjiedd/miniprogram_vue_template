@@ -1,0 +1,9 @@
+$font-weight: 10;
+
+@for $weight from 4 through $font-weight {
+  @if $weight {
+    .fw-#{$weight} {
+      font-weight: $weight * 100;
+    }
+  }
+}

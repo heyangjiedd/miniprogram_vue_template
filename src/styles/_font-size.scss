@@ -1,0 +1,9 @@
+$font-size: 50;
+
+@for $size from 0 through $font-size {
+  @if $size >= 10 {
+    .fs-#{$size} {
+      font-size: $size * 1px;
+    }
+  }
+}
