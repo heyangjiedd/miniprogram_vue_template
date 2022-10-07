@@ -1,0 +1,28 @@
+.index {
+  .banner_img {
+    height: 194px;
+    width: 345px;
+  }
+  .box {
+    margin: 10px 15px 0 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    .item {
+      width: 110px;
+      height: 92px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: $bg-gray;
+      border-radius: 11px;
+      margin-bottom: 10px;
+      .item_img {
+        height: 31px;
+        width: 31px;
+      }
+    }
+  }
+}

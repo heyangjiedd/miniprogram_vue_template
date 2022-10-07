@@ -1,0 +1,28 @@
+.index {
+  .box {
+    margin: 5px 15px 0 15px;
+    .img {
+      width: 57px;
+      height: 57px;
+      border-radius: 50%;
+    }
+    .qrcode {
+      width: 42px;
+      height: 42px;
+      background: $bg-gray;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 11px 11px 11px 11px;
+    }
+    .phone {
+      background: $bg-gray;
+      font-size: 11px;
+      color: $cl-black-00;
+      padding: 4px 8px;
+      border-radius: 8px;
+      margin-top: 10px;
+      line-height: 11px;
+    }
+  }
+}

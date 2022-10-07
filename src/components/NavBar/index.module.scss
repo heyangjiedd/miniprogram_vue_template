@@ -1,0 +1,25 @@
+.index {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+  background-color: $bg-white;
+  .title {
+    height: 15px;
+  }
+  .back {
+    height: 23px;
+  }
+  .apply {
+    height: 31px;
+  }
+  .left {
+    position: absolute;
+    left: 13px;
+  }
+}

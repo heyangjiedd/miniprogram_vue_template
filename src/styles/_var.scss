@@ -1,3 +1,31 @@
-$colors-bg: ();
-$colors-cl: ();
+$cl-black: #333333;
+$cl-black-00: #000000;
+$cl-white: #ffffff;
+$cl-gray: #f3f3f3;
+$cl-gray-aa: #aaaaaa;
+$cl-gray-7b: #7b7b7b;
+
+$bg-black: #333333;
+$bg-gray: #f3f3f3;
+$bg-gray-7b: #7b7b7b;
+$bg-white: #ffffff;
+$bg-red: #ff6969;
+
+$colors-cl: (
+  black: $cl-black,
+  black-00: $cl-black-00,
+  white: $cl-white,
+  gray: $cl-gray,
+  gray-aa: $cl-gray-aa,
+  gray-7b: $cl-gray-7b,
+);
+
+$colors-bg: (
+  black: $bg-black,
+  gray: $bg-gray,
+  gray-7b: $bg-gray-7b,
+  white: $bg-white,
+  red: $bg-red,
+);
+
 $colors-br: ();

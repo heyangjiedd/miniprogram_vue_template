@@ -1,0 +1,20 @@
+.index {
+  padding: 13px 11px;
+  background: $bg-gray;
+  border-radius: 11px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .count {
+    background: $bg-red;
+    width: 17px;
+    height: 17px;
+    display: inline-block;
+    color: $cl-white;
+    font-size: 11px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 17px;
+    margin-left: 10px;
+  }
+}

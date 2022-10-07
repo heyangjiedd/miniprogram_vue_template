@@ -49,5 +49,8 @@ $distance: 200;
     .wd-#{$value} {
       width: $value * 1px;
     }
+    .brs-#{$value} {
+      border-radius: $value * 1px;
+    }
   }
 }

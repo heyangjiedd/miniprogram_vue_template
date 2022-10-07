@@ -1,0 +1,34 @@
+.index {
+  .box {
+    margin: 10px 15px 0 15px;
+    .infos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+  .item_box {
+    background-color: $bg-gray;
+    border-radius: 15px;
+    margin: 10px 15px 0 15px;
+    padding: 15px;
+    .img_box {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      .img {
+        width: 84px;
+        height: 112px;
+        border-radius: 11px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+  :global {
+    .nut-tabs__content {
+      display: none;
+    }
+  }
+}

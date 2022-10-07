@@ -22,7 +22,7 @@ subPackagePagePaths.forEach((item) => {
 });
 const subPackages = Object.keys(subPackagesObj).map((item) => ({
   root: item,
-  pages: subPackagesObj[item].pages
+  pages: subPackagesObj[item].pages,
 }));
 
 // eslint-disable-next-line no-undef
@@ -35,20 +35,26 @@ export default defineAppConfig({
         pagePath: paths.HOME_INDEX,
         text: '首页',
         iconPath: 'assets/icons/home.png',
-        selectedIconPath: 'assets/icons/home_s.png'
+        selectedIconPath: 'assets/icons/home_s.png',
       },
       {
-        pagePath: paths.LOGIN_INDEX,
-        text: '登录页',
-        iconPath: 'assets/icons/evaluate.png',
-        selectedIconPath: 'assets/icons/evaluate_s.png'
-      }
-    ]
+        pagePath: paths.DISCOVER_INDEX,
+        text: '发现',
+        iconPath: 'assets/icons/discover.png',
+        selectedIconPath: 'assets/icons/discover_s.png',
+      },
+      {
+        pagePath: paths.ME_INDEX,
+        text: '个人',
+        iconPath: 'assets/icons/me.png',
+        selectedIconPath: 'assets/icons/me_s.png',
+      },
+    ],
   },
   window: {
     backgroundTextStyle: 'light',
     navigationBarBackgroundColor: '#fff',
     navigationBarTitleText: 'WeChat',
-    navigationBarTextStyle: 'black'
-  }
+    navigationBarTextStyle: 'black',
+  },
 });

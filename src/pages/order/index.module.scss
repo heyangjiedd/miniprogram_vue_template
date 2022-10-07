@@ -1,0 +1,17 @@
+.index {
+  .item_box {
+    margin: 0 15px;
+    .img_box {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      .img {
+        width: 110px;
+        height: 140px;
+        border-radius: 11px;
+        margin-bottom: 8px;
+      }
+    }
+  }
+}
