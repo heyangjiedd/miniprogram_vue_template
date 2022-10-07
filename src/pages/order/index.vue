@@ -3,19 +3,21 @@
   import { reactive } from 'vue';
   import NavBar from '@/components/NavBar';
   import SimpleFullButton from '@/components/Button/SimpleFull';
+  import SimpleButton from '@/components/Button/Simple';
   import CloseButton from '@/components/Button/Close';
   import DatePicker from '@/components/Select/DatePicker';
+  import TimePerson from '@/components/Select/TimePerson';
+  import SelectInput from '@/components/Select/Input';
+  import Location from '@/components/Select/Location';
   import { useSystemInfoStore } from '@/store';
   import { imgItem, female, male } from '@/assets/imgs';
   import styles from './index.module.scss';
   const state = reactive({
-    show: true,
+    show: false,
+    showNotice: false,
   });
   const systemInfo = useSystemInfoStore();
   const list = [1, 2, 3, 4, 5, 6];
-  const orderClick = () => {
-    state.show = !state.show;
-  };
 </script>
 
 <template>
@@ -35,7 +37,7 @@
       </view>
       <view class="fs-15 cl-black mt-5 fw-6">特长 </view>
       <view class="fs-15 cl-black mt-5 lh-21 mb-30">别呼吸，都已经过去了别呼吸，都已经过去了别呼吸，都已经过去了 </view>
-      <SimpleFullButton text="下单" :isBlack="true" @click="orderClick" />
+      <SimpleFullButton text="下单" :isBlack="true" @click="state.show = true" />
       <nut-popup
         z-index="999"
         position="bottom"
@@ -45,12 +47,23 @@
         v-model:visible="state.show"
       >
         <view class="m-15">
-          <CloseButton text="支付" @close="orderClick" />
-          <view class="mt-15 mb-10 cl-black fs-15 fw-6">日期</view>
+          <CloseButton text="支付" @close="state.show = false" />
+          <view class="mt-10 mb-5 cl-black fs-15 fw-6">日期</view>
           <DatePicker />
-          <view class="mt-15 cl-black fs-15 fw-6">时长与人数</view>
-          <view class="mt-15 cl-black fs-15 fw-6">见面地点</view>
-          <view class="mt-15 cl-black fs-15 fw-6">支付金额</view>
+          <view class="mt-10 mb-5 cl-black fs-15 fw-6">时长与人数</view>
+          <TimePerson />
+          <view class="mt-10 mb-5 cl-black fs-15 fw-6">见面地点</view>
+          <Location />
+          <view class="mt-10 mb-5 cl-black fs-15 fw-6">支付金额</view>
+          <SelectInput />
+          <SimpleFullButton text="支付 ¥200" :isBlack="true" @click="state.showNotice = true" class="mt-15" />
+        </view>
+      </nut-popup>
+      <nut-popup round v-model:visible="state.showNotice">
+        <view :class="styles.modal_box">
+          <image :src="imgItem" class="wd-138 hg-138" />
+          <view class="cl-black fs-13 lh-23 mt-10">你的陪玩官正在赶来的路你的陪玩官正在赶来的路上上</view>
+          <SimpleButton text="我知道了" :style="{ width: '100%' }" class="mt-10" @click="state.showNotice = false" />
         </view>
       </nut-popup>
     </view>

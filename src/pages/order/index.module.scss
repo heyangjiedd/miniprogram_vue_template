@@ -14,4 +14,15 @@
       }
     }
   }
+  .modal_box {
+    width: 247px;
+    height: 264px;
+    box-sizing: border-box;
+    padding: 17px 15px 11px 15px;
+    background: $bg-white;
+    border-radius: 11px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }

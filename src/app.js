@@ -1,7 +1,19 @@
 import { createApp } from 'vue';
 import Taro from '@tarojs/taro';
 import { createPinia } from 'pinia';
-import { Button, Toast, Swiper, SwiperItem, Tabs, TabPane, Popup, OverLay } from '@nutui/nutui-taro';
+import {
+  Button,
+  Toast,
+  Swiper,
+  SwiperItem,
+  Tabs,
+  TabPane,
+  Popup,
+  OverLay,
+  DatePicker,
+  Picker,
+  Input,
+} from '@nutui/nutui-taro';
 import { APP_TARO_ENV } from '@/config/appConfig';
 import TaroFun from '@/utils/overrideTaroFun';
 import { useSystemInfoStore } from '@/store';
@@ -68,5 +80,8 @@ App.use(Button)
   .use(Tabs)
   .use(TabPane)
   .use(Popup)
-  .use(OverLay);
+  .use(OverLay)
+  .use(DatePicker)
+  .use(Picker)
+  .use(Input);
 export default App;
