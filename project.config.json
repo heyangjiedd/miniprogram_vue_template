@@ -2,7 +2,7 @@
   "miniprogramRoot": "dist/",
   "projectname": "vue-template",
   "description": "项目配置文件，详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
-  "appid": "wxb868673a0a896ef2",
+  "appid": "wx718375b3855cf022",
   "setting": {
     "urlCheck": true,
     "es6": false,

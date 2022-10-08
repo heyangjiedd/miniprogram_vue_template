@@ -9,13 +9,13 @@ function formatUrl(obj) {
 }
 
 export const config = {
-  baseUrl: 'http://120.24.31.219:5003',
+  baseUrl: 'http://api.playerfile.cn/',
   timeout: 8000,
   dataType: 'json',
   mode: 'cors',
   header: {
-    'content-type': 'application/json' // 默认值
-  }
+    'content-type': 'application/json', // 默认值
+  },
 };
 
 function Http() {
@@ -27,8 +27,8 @@ function Http() {
         ...options,
         header: {
           token: Taro.getStorageSync('token'),
-          ...options.header
-        }
+          ...options.header,
+        },
       };
     },
     // 返回拦截
@@ -40,7 +40,7 @@ function Http() {
         Taro.showToast({
           title: msg || '系统异常',
           icon: 'error',
-          duration: 2000
+          duration: 2000,
         });
         setTimeout(() => {
           Taro.hideLoading();
@@ -59,7 +59,7 @@ function Http() {
       }
       !this.loading &&
         Taro.showLoading({
-          title: '加载中'
+          title: '加载中',
         });
       this.loading++;
       return new Promise((resolve, reject) => {
@@ -68,7 +68,7 @@ function Http() {
           ...opt,
           header: {
             ...config.header,
-            ...opt.header
+            ...opt.header,
           },
           url: config.baseUrl + opt.url,
           success: (res) => {
@@ -84,7 +84,7 @@ function Http() {
             }, 1000);
             reject(error);
           },
-          complete: () => {}
+          complete: () => {},
         };
         Taro.request(param);
       });
@@ -96,7 +96,7 @@ function Http() {
       return this.fetch({
         ...options,
         data: JSON.stringify(options.data),
-        method: 'POST'
+        method: 'POST',
       });
     },
     postQuery(options) {
@@ -104,7 +104,7 @@ function Http() {
         ...options,
         url: `${options.url}?${formatUrl(options.param)}`,
         data: JSON.stringify(options.data),
-        method: 'POST'
+        method: 'POST',
       });
     },
     postFormData(options) {
@@ -112,10 +112,10 @@ function Http() {
         ...options,
         method: 'POST',
         header: {
-          'content-type': 'application/x-www-form-urlencoded'
-        }
+          'content-type': 'application/x-www-form-urlencoded',
+        },
       });
-    }
+    },
   };
 }
 const index = new Http();

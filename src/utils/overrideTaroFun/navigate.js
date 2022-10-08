@@ -21,7 +21,7 @@ function navigateTo({ url, params, ...otherParams }) {
   const paramsStr = handleParams(params);
   Taro.navigateTo({
     url: handelPath(url + paramsStr),
-    ...otherParams
+    ...otherParams,
   });
 }
 
@@ -30,7 +30,7 @@ function redirectTo({ url, params, ...otherParams }) {
   const paramsStr = handleParams(params);
   Taro.redirectTo({
     url: handelPath(url + paramsStr),
-    ...otherParams
+    ...otherParams,
   });
 }
 
@@ -39,7 +39,7 @@ function switchTab({ url, params, ...otherParams }) {
   const paramsStr = handleParams(params);
   Taro.switchTab({
     url: handelPath(url + paramsStr),
-    ...otherParams
+    ...otherParams,
   });
 }
 
@@ -48,7 +48,7 @@ function reLaunch({ url, params, ...otherParams }) {
   const paramsStr = handleParams(params);
   Taro.reLaunch({
     url: handelPath(url + paramsStr),
-    ...otherParams
+    ...otherParams,
   });
 }
 

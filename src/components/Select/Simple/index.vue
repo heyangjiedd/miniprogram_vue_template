@@ -6,6 +6,12 @@
     placeholder: {
       default: '请选择',
     },
+    title: {
+      default: '请选择',
+    },
+    options: {
+      default: [],
+    },
   });
   const state = reactive({
     time: '',
@@ -14,11 +20,6 @@
   const timeChange = ({ selectedOptions }) => {
     state.time = selectedOptions[0].text;
   };
-  const columns = [
-    { text: '1小时', value: '1' },
-    { text: '2小时', value: '2' },
-    { text: '3小时', value: '3' },
-  ];
 </script>
 
 <template>
@@ -27,6 +28,6 @@
       <view class="cl-black fs-15">{{ state.time || props.placeholder }}</view>
       <image :src="drop" class="wd-13 hg-13" />
     </view>
-    <nut-picker v-model:visible="state.timeShow" :columns="columns" title="时长选择" @confirm="timeChange" />
+    <nut-picker v-model:visible="state.timeShow" :columns="options" :title="props.title" @confirm="timeChange" />
   </view>
 </template>

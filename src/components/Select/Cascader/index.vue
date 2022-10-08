@@ -6,6 +6,12 @@
     placeholder: {
       default: '请选择',
     },
+    title: {
+      default: '请选择',
+    },
+    options: {
+      default: [],
+    },
   });
   const state = reactive({
     time: [],
@@ -15,22 +21,6 @@
   const change = (value, pathNodes) => {
     state.timeTxt = pathNodes.map((item) => item.text).join('/');
   };
-  const options = [
-    {
-      value: '1',
-      text: '浙江',
-      children: [
-        {
-          value: '2',
-          text: '杭州',
-          children: [
-            { value: '3', text: '西湖区' },
-            { value: '4', text: '余杭区' },
-          ],
-        },
-      ],
-    },
-  ];
 </script>
 
 <template>
@@ -40,11 +30,11 @@
       <image :src="drop" class="wd-13 hg-13" />
     </view>
     <nut-cascader
-      title="地址选择"
+      :title="props.title"
       v-model:visible="state.timeShow"
       v-model="state.time"
       @change="change"
-      :options="options"
+      :options="props.options"
     ></nut-cascader>
   </view>
 </template>
