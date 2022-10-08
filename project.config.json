@@ -30,7 +30,10 @@
         },
         "disableUseStrict": false,
         "useCompilerPlugins": false,
-        "minifyWXML": true
+        "minifyWXML": true,
+        "useApiHook": true,
+        "useApiHostProcess": true,
+        "useIsolateContext": true
     },
     "compileType": "miniprogram",
     "libVersion": "2.26.1",
@@ -39,7 +42,18 @@
         "ignore": [],
         "include": []
     },
-    "condition": {},
+    "condition": {
+        "miniprogram": {
+            "list": [
+                {
+                    "name": "pages/order/index",
+                    "pathName": "pages/order/index",
+                    "query": "",
+                    "scene": null
+                }
+            ]
+        }
+    },
     "editorSetting": {
         "tabIndent": "insertSpaces",
         "tabSize": 4
