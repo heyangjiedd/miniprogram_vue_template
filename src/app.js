@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 import Taro from '@tarojs/taro';
 import { createPinia } from 'pinia';
-import { Button, Toast } from '@nutui/nutui-taro';
+import { Button, Toast, InfiniteLoading } from '@nutui/nutui-taro';
 import { APP_TARO_ENV } from '@/config/appConfig';
 import TaroFun from '@/utils/overrideTaroFun';
 import { useSystemInfoStore } from '@/store';
@@ -26,7 +26,7 @@ const App = createApp({
             break;
         }
         systemInfo.setData(res);
-      }
+      },
     });
     this.checkUpdateVersion();
   },
@@ -47,20 +47,22 @@ const App = createApp({
                 // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
                 updateManager.applyUpdate();
               }
-            }
+            },
           });
         });
         updateManager.onUpdateFailed(() => Taro.fun.showToast('更新失败，请稍后再试！'));
       }
     };
     return {
-      checkUpdateVersion
+      checkUpdateVersion,
     };
-  }
+  },
   // 入口组件不需要实现 render 方法，即使实现了也会被 taro 所覆盖
 });
 
 App.use(createPinia());
-App.use(Button).use(Toast);
+App.use(Button)
+  .use(Toast)
+  .use(InfiniteLoading);
 
 export default App;

@@ -1,34 +1,32 @@
 <script setup>
-  import { reactive } from 'vue';
-  import { useSystemInfoStore } from '@/store';
-  const systemInfo = useSystemInfoStore();
-  const state = reactive({
-    msg: '欢迎使用 NutUI3 开发小程序',
-    msg2: '你成功了～',
-    type: 'text',
-    show: false,
-    cover: false
-  });
-
-  const handleClick = (type, msg, cover = false) => {
-    state.show = true;
-    state.msg2 = msg;
-    state.type = type;
-    state.cover = cover;
+  import { ref } from 'vue';
+  import styles from './index.module.scss';
+  const props = defineProps(['fetchApi']);
+  const hasMore = ref(true);
+  const list = ref(new Array(30).fill(0));
+  const loadMore = async (done) => {
+    const res = await props.fetchApi();
+    const curLen = list.value.length;
+    for (let i = curLen; i < curLen + 10; i++) {
+      list.value.push(`${i}`);
+    }
+    if (list.value.length > 50) hasMore.value = false;
+    done();
   };
 </script>
 
 <template>
-  <view class="index">
-    <view class="btn">
-      <nut-button type="primary" @click="handleClick('text', msg2, true)">点我</nut-button>
+  <view :class="styles.index">
+    <view id="header" :class="styles.header">
+      <slot name="header"></slot>
     </view>
-    <view>{{ systemInfo.data.system }}</view>
-    <nut-toast v-model:visible="state.show" :msg="state.msg" :type="state.type" :cover="state.cover" />
+    <view id="list" :class="styles.list">
+      <nut-infiniteloading :has-more="hasMore" @load-more="loadMore" load-icon="loading">
+        <view v-for="(item, index) in list" :key="index"><slot name="item" :data="item"></slot></view>
+      </nut-infiniteloading>
+    </view>
+    <view id="footer" :class="styles.footer">
+      <slot name="footer"></slot>
+    </view>
   </view>
 </template>
-
-<style lang="scss">
-  .index {
-  }
-</style>

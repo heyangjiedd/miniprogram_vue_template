@@ -12,6 +12,7 @@ module.exports = {
     'space-before-function-paren': 0,
     'vue/no-v-model-argument': 0,
     'vue/multi-word-component-names': 0,
+    'vue/no-multiple-template-root': 0,
     'comma-dangle': 0,
   },
 };
