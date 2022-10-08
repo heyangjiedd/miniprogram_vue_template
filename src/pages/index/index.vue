@@ -27,6 +27,7 @@
     type13,
     type14,
     type15,
+    money,
   } from '@/assets/imgs';
   import styles from './index.module.scss';
 
@@ -90,11 +91,15 @@
         <view class="mt-10 mb-5 cl-black fs-15 fw-6">时长与人数</view>
         <TimePerson />
         <view class="mt-10 mb-5 cl-black fs-15 fw-6">性别</view>
-        <SelectTag />
+        <SelectTag type="1" />
         <view class="mt-10 mb-5 cl-black fs-15 fw-6">见面地点</view>
         <Location />
         <view class="mt-10 mb-5 cl-black fs-15 fw-6">支付金额</view>
-        <SelectInput />
+        <SelectInput type="number">
+          <template #prefix>
+            <image :src="money" class="wd-19 hg-19" />
+          </template>
+        </SelectInput>
         <SimpleFullButton text="下单" :isBlack="true" @click="state.showNotice = true" class="mt-15" />
       </view>
     </nut-popup>

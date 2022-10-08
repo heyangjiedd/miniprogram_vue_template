@@ -1,22 +1,14 @@
 <script setup>
   import { reactive } from 'vue';
-  import { infinite, female, male } from '@/assets/imgs';
   import styles from './index.module.scss';
-  const props = defineProps({
-    type: {
-      default: '0',
-    },
-  });
+
   const state = reactive({
     select: '',
   });
   const list = [
-    { icon: male, text: '男' },
-    { icon: female, text: '女' },
+    { icon: 1, text: '兼职' },
+    { icon: 2, text: '全职' },
   ];
-  if (props.type === '1') {
-    list.push({ icon: infinite, text: '不限' });
-  }
 </script>
 
 <template>
@@ -24,11 +16,10 @@
     <view
       v-for="item in list"
       :key="item.text"
-      :style="{ width: props.type === '1' ? '30%' : '47%' }"
+      :style="{ width: '47%' }"
       :class="[styles.index, { [styles.select]: state.select === item.text }]"
       @click="state.select = item.text"
     >
-      <image :src="item.icon" class="wd-19 hg-19 mr-6" />
       <view class="cl-black fs-15">{{ item.text }}</view>
     </view>
   </view>

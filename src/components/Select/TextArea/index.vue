@@ -2,12 +2,13 @@
   import { reactive } from 'vue';
   import styles from './index.module.scss';
   const props = defineProps({
-    type: {
-      default: 'text',
+    maxLength: {
+      default: 20,
     },
     placeholder: {
       default: '请输入',
     },
+    rows: { default: 2 },
   });
   const state = reactive({
     text: '',
@@ -16,7 +17,13 @@
 
 <template>
   <view :class="styles.index">
-    <slot name="prefix"></slot>
-    <nut-input :type="props.type" v-model="state.text" :placeholder="props.placeholder" />
+    <nut-textarea
+      v-model="state.text"
+      :placeholder="props.placeholder"
+      limit-show
+      :rows="props.rows"
+      autosize
+      :max-length="props.maxLength"
+    />
   </view>
 </template>

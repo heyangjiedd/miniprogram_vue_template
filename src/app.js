@@ -13,6 +13,8 @@ import {
   DatePicker,
   Picker,
   Input,
+  TextArea,
+  Cascader,
 } from '@nutui/nutui-taro';
 import { APP_TARO_ENV } from '@/config/appConfig';
 import TaroFun from '@/utils/overrideTaroFun';
@@ -83,5 +85,7 @@ App.use(Button)
   .use(OverLay)
   .use(DatePicker)
   .use(Picker)
+  .use(Cascader)
+  .use(TextArea)
   .use(Input);
 export default App;

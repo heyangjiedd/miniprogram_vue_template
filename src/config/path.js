@@ -5,6 +5,7 @@ const main = {
   NOTIFY_LIST_INDEX: 'pages/notifyList/index', // 通知列表
   ORDER_LIST_INDEX: 'pages/orderList/index', // 订单列表
   ORDER_INDEX: 'pages/order/index', // 下单
+  APPLY_INDEX: 'pages/apply/index', // 申请陪完官
 };
 
 const subPackage = {};

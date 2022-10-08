@@ -35,3 +35,5 @@ export { default as map } from './map-pin.png';
 export { default as laugh } from './laugh.png';
 export { default as reload } from './reload.png';
 export { default as drop } from './drop.png';
+export { default as add } from './add.png';
+export { default as remove } from './remove.png';

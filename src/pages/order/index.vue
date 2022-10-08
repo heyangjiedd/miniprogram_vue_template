@@ -10,7 +10,7 @@
   import SelectInput from '@/components/Select/Input';
   import Location from '@/components/Select/Location';
   import { useSystemInfoStore } from '@/store';
-  import { imgItem, female, male } from '@/assets/imgs';
+  import { imgItem, female, male, money } from '@/assets/imgs';
   import styles from './index.module.scss';
   const state = reactive({
     show: false,
@@ -55,7 +55,11 @@
           <view class="mt-10 mb-5 cl-black fs-15 fw-6">见面地点</view>
           <Location />
           <view class="mt-10 mb-5 cl-black fs-15 fw-6">支付金额</view>
-          <SelectInput />
+          <SelectInput type="number">
+            <template #prefix>
+              <image :src="money" class="wd-19 hg-19" />
+            </template>
+          </SelectInput>
           <SimpleFullButton text="支付 ¥200" :isBlack="true" @click="state.showNotice = true" class="mt-15" />
         </view>
       </nut-popup>
