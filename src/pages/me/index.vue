@@ -5,16 +5,16 @@
   import { useSystemInfoStore, userInfoStore } from '@/store';
   import { imgItem, qrcode, notification, document, messages } from '@/assets/imgs';
   import { login } from '@/utils/service';
+  import { ORDER_LIST_INDEX } from '@/config/path';
   import styles from './index.module.scss';
 
   const systemInfo = useSystemInfoStore();
   const userInfo = userInfoStore();
-  const handleLogin = () => {
-    Taro.login({
-      success: ({ code }) => {
-        login({ code });
-      },
-    });
+  const handleClickOrder = () => {
+    Taro.fun.navigateTo({ url: ORDER_LIST_INDEX });
+  };
+  const handleClickCall = () => {
+    Taro.makePhoneCall({ phoneNumber: '13402842722' });
   };
 </script>
 
@@ -26,7 +26,7 @@
         <view class="flex-row-bc">
           <image :src="imgItem" :class="styles.img" />
           <view class="ml-10">
-            <view class="cl-black-00 fs-17 fw-6" @click="handleLogin">大师傅</view>
+            <view class="cl-black-00 fs-17 fw-6">大师傅</view>
             <view :class="styles.phone">绑定手机号</view>
           </view>
         </view>
@@ -37,9 +37,9 @@
           </view>
         </view>
       </view>
-      <Cell :icon="notification" title="通知" count="6" notice="有人接单了喔" class="mt-11" />
-      <Cell :icon="document" title="我的订单" class="mt-11" />
-      <Cell :icon="messages" title="联系客服" class="mt-11" />
+      <Cell :icon="notification" title="通知" count="6" notice="有人接单了喔" class="mt-11" @click="handleClickOrder" />
+      <Cell :icon="document" title="我的订单" class="mt-11" @click="handleClickOrder" />
+      <Cell :icon="messages" title="联系客服" class="mt-11" @click="handleClickCall" />
     </view>
   </view>
 </template>

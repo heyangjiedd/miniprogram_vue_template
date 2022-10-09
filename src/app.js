@@ -17,6 +17,7 @@ import {
   Cascader,
 } from '@nutui/nutui-taro';
 import { APP_TARO_ENV } from '@/config/appConfig';
+import { login } from '@/utils/service';
 import TaroFun from '@/utils/overrideTaroFun';
 import { useSystemInfoStore } from '@/store';
 
@@ -40,6 +41,13 @@ const App = createApp({
             break;
         }
         systemInfo.setData(res);
+      },
+    });
+    Taro.login({
+      success: ({ code }) => {
+        login({ code }).then(({ accessToken }) => {
+          Taro.setStorageSync('token', accessToken.token);
+        });
       },
     });
     this.checkUpdateVersion();

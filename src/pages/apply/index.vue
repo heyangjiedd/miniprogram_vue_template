@@ -55,17 +55,6 @@
     });
   };
 </script>
-<!--
-city (string, optional): 城市 ,
-coverUrl (string, optional): 封面图 ,
-district (string, optional): 地区 ,
-nickname (string, optional): 昵称 ,
-province (string, optional): 省份 ,
-
-createTime (string, optional): 创建时间 ,
-id (integer, optional): 记录ID ,
-playerId (integer, optional): player ID ,
-url (string, optional): 生活照URL -->
 
 <template>
   <view :class="styles.index">

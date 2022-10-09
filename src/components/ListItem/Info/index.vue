@@ -1,17 +1,17 @@
 <script setup>
   import { imgItem, female, male } from '@/assets/imgs';
   import styles from './index.module.scss';
-  const props = defineProps(['icon', 'title', 'count', 'notice']);
+  const props = defineProps(['data']);
 </script>
 
 <template>
   <view :class="styles.item">
-    <image :src="imgItem" :class="styles.item_img" />
+    <image :src="props.data.coverUrl" :class="styles.item_img" />
     <view class="fs-13 flex-row-cc">
-      <image :src="female" class="wd-11 hg-11" />
-      <text class="ml-4">okitari酱</text>
-      <text class="ml-6">24岁</text>
+      <!-- <image :src="female" class="wd-11 hg-11" /> -->
+      <text class="ml-4">{{ props.data.nickname }}</text>
+      <text class="ml-6">{{ props.data.age }}岁</text>
     </view>
-    <view class="fs-11 mt-10">别呼吸，都已经过去了</view>
+    <view class="fs-11 mt-10">{{ props.data.profile }}</view>
   </view>
 </template>

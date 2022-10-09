@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro';
-import TaroFun from '@/utils/overrideTaroFun';
-import { LOGIN } from '@/config/path';
+import { HOME_INDEX } from '@/config/path';
+import { login } from '@/utils/service';
 
 function formatUrl(obj) {
   return Object.keys(obj)
@@ -48,7 +48,16 @@ function Http() {
         this.loading--;
         throw msg;
       } else if (code === 401) {
-        TaroFun.reLaunch({ url: LOGIN });
+        Taro.login({
+          success: ({ code }) => {
+            login({ code }).then(({ accessToken }) => {
+              Taro.setStorageSync('token', accessToken.token);
+              Taro.fun.reLaunch({ url: HOME_INDEX });
+            });
+          },
+        });
+      } else {
+        throw new Error('系统异常');
       }
     },
     fetch(options) {

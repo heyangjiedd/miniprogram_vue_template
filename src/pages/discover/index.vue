@@ -4,34 +4,22 @@
   import Info from '@/components/ListItem/Info';
   import List from '@/components/List';
   import { useSystemInfoStore } from '@/store';
+  import { getPlayerList } from '@/utils/service';
+  import { ORDER_INDEX } from '@/config/path';
   import styles from './index.module.scss';
 
   const systemInfo = useSystemInfoStore();
-  const fetchApi = async () => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve();
-      }, 3000);
-    });
+  const handleGo = (data) => {
+    Taro.fun.navigateTo({ url: ORDER_INDEX, params: { playerId: data.id } });
   };
-  const list = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 </script>
 
 <template>
   <view :class="styles.index" :style="{ paddingTop: systemInfo.data.navBarHeight + 'px' }">
     <NavBar :isApply="true" />
-    <view :class="styles.box">
-      <Info v-for="(item, index) in list" :key="index" />
-    </view>
-    <List :fetchApi="fetchApi">
-      <template #header>
-        <div>header</div>
-      </template>
+    <List :fetchApi="getPlayerList">
       <template #item="{data}">
-        <div>{{ data }}</div>
-      </template>
-      <template #footer>
-        <div>footer</div>
+        <Info :data="data" @click="handleGo(data)" />
       </template>
     </List>
   </view>

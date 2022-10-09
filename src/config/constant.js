@@ -31,3 +31,9 @@ export const JOB_TIME_TYPE_LIST = [
     value: '兼职',
   },
 ];
+export const TIME_NUMBER_LIST = new Array(24)
+  .fill(0)
+  .map((item, index) => ({ text: `${index + 1} 小时`, value: index + 1 }));
+export const PERSON_NUMBER_LIST = new Array(10)
+  .fill(0)
+  .map((item, index) => ({ text: `${index + 1} 人`, value: index + 1 }));
