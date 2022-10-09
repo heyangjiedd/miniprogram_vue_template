@@ -19,7 +19,7 @@ export const uploadFile = (url = '', tempFilePaths) => {
       },
       fail(resp) {
         reject(resp);
-      }
+      },
     });
   });
 };
@@ -29,12 +29,16 @@ export const chooseImageUpload = (url = '', count = 1) => {
     Taro.chooseImage({
       count,
       sourceType: ['album'],
-      success(res) {
-        uploadFile(url, res.tempFilePaths).then(resolve, reject);
+      success({ tempFilePaths }) {
+        const promises = [];
+        tempFilePaths.forEach((item) => {
+          promises.push(uploadFile(url, item));
+        });
+        Promise.all(promises).then(resolve, reject);
       },
       fail(resp) {
         reject(resp);
-      }
+      },
     });
   });
 };
@@ -49,7 +53,7 @@ export const chooseVideoUpload = (url = '', count = 1) => {
       },
       fail(resp) {
         reject(resp);
-      }
+      },
     });
   });
 };

@@ -5,7 +5,6 @@
   import SimpleFullButton from '@/components/Button/SimpleFull';
   import CloseButton from '@/components/Button/Close';
   import DatePicker from '@/components/Select/DatePicker';
-  import TimePerson from '@/components/Select/TimePerson';
   import SelectTag from '@/components/Select/Tag';
   import SelectInput from '@/components/Select/Input';
   import Location from '@/components/Select/Location';
@@ -13,6 +12,7 @@
   import { APPLY_INDEX } from '@/config/path';
   import { money } from '@/assets/imgs';
   import { getBanner, getPlayerType } from '@/utils/service';
+  import { SEX_TYPE_LIST, JOB_TIME_TYPE_LIST } from '@/config/constant';
 
   import styles from './index.module.scss';
 
@@ -65,7 +65,18 @@
         <view class="mt-10 mb-5 cl-black fs-15 fw-6">日期</view>
         <DatePicker />
         <view class="mt-10 mb-5 cl-black fs-15 fw-6">时长与人数</view>
-        <TimePerson />
+        <view :class="[styles.item_box, 'pr-10']"
+          ><SelectSimple placeholder="请选择时长" title="选择时长" :options="SEX_TYPE_LIST">
+            <template #prefix>
+              <image :src="clock" class="wd-19 hg-19 mr-6" />
+            </template> </SelectSimple
+        ></view>
+        <view :class="[styles.item_box, 'pl-10']"
+          ><SelectSimple placeholder="请选择人数" title="选择人数" :options="SEX_TYPE_LIST">
+            <template #prefix>
+              <image :src="laugh" class="wd-19 hg-19 mr-6" />
+            </template> </SelectSimple
+        ></view>
         <view class="mt-10 mb-5 cl-black fs-15 fw-6">性别</view>
         <SelectTag type="1" />
         <view class="mt-10 mb-5 cl-black fs-15 fw-6">见面地点</view>
@@ -76,7 +87,7 @@
             <image :src="money" class="wd-19 hg-19" />
           </template>
         </SelectInput>
-        <SimpleFullButton text="下单" :isBlack="true" @click="state.showNotice = true" class="mt-15" />
+        <SimpleFullButton text="下单" :isBlack="true" class="mt-15" @click="state.showNotice = true" />
       </view>
     </nut-popup>
   </view>

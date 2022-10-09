@@ -1,5 +1,4 @@
 <script setup>
-  import { reactive } from 'vue';
   import styles from './index.module.scss';
   const props = defineProps({
     type: {
@@ -8,15 +7,24 @@
     placeholder: {
       default: '请输入',
     },
+    modelValue: {
+      default: '',
+    },
   });
-  const state = reactive({
-    text: '',
-  });
+  const emit = defineEmits(['update:modelValue']);
+  const onInput = (val) => {
+    emit('update:modelValue', val);
+  };
 </script>
 
 <template>
   <view :class="styles.index">
     <slot name="prefix"></slot>
-    <nut-input :type="props.type" v-model="state.text" :placeholder="props.placeholder" />
+    <nut-input
+      :model-value="props.modelValue"
+      @update:model-value="onInput"
+      :type="props.type"
+      :placeholder="props.placeholder"
+    />
   </view>
 </template>

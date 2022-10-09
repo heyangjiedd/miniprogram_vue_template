@@ -1,21 +1,24 @@
 <script setup>
   import Taro from '@tarojs/taro';
-  import { reactive } from 'vue';
+  import { reactive, ref } from 'vue';
   import NavBar from '@/components/NavBar';
   import SimpleFullButton from '@/components/Button/SimpleFull';
   import SimpleButton from '@/components/Button/Simple';
   import CloseButton from '@/components/Button/Close';
   import DatePicker from '@/components/Select/DatePicker';
-  import TimePerson from '@/components/Select/TimePerson';
   import SelectInput from '@/components/Select/Input';
   import Location from '@/components/Select/Location';
+  import SelectSimple from '@/components/Select/Simple';
+  import { SEX_TYPE_LIST, JOB_TIME_TYPE_LIST } from '@/config/constant';
   import { useSystemInfoStore } from '@/store';
-  import { imgItem, female, male, money } from '@/assets/imgs';
+  import { imgItem, female, male, money, laugh, clock } from '@/assets/imgs';
   import styles from './index.module.scss';
   const state = reactive({
     show: false,
     showNotice: false,
   });
+  const date = ref(new Date());
+  const location = ref('');
   const systemInfo = useSystemInfoStore();
   const list = [1, 2, 3, 4, 5, 6];
 </script>
@@ -49,11 +52,24 @@
         <view class="m-15">
           <CloseButton text="支付" @close="state.show = false" />
           <view class="mt-10 mb-5 cl-black fs-15 fw-6">日期</view>
-          <DatePicker />
+          <DatePicker v-model="date" />
           <view class="mt-10 mb-5 cl-black fs-15 fw-6">时长与人数</view>
-          <TimePerson />
+          <view class="flex-row-bc">
+            <view :class="[styles.item_box, 'pr-10']"
+              ><SelectSimple placeholder="请选择时长" title="选择时长" :options="SEX_TYPE_LIST">
+                <template #prefix>
+                  <image :src="clock" class="wd-19 hg-19 mr-6" />
+                </template> </SelectSimple
+            ></view>
+            <view :class="[styles.item_box, 'pl-10']"
+              ><SelectSimple placeholder="请选择人数" title="选择人数" :options="SEX_TYPE_LIST">
+                <template #prefix>
+                  <image :src="laugh" class="wd-19 hg-19 mr-6" />
+                </template> </SelectSimple
+            ></view>
+          </view>
           <view class="mt-10 mb-5 cl-black fs-15 fw-6">见面地点</view>
-          <Location />
+          <Location v-model="location" />
           <view class="mt-10 mb-5 cl-black fs-15 fw-6">支付金额</view>
           <SelectInput type="number">
             <template #prefix>

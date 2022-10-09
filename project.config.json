@@ -36,10 +36,14 @@
     "packNpmManually": false,
     "packNpmRelationList": [],
     "minifyWXSS": true,
-    "showES6CompileOption": false
+    "showES6CompileOption": false,
+    "useStaticServer": true,
+    "disableUseStrict": false,
+    "useCompilerPlugins": false,
+    "minifyWXML": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.26.1",
+  "libVersion": "2.16.1",
   "srcMiniprogramRoot": "dist/",
   "packOptions": {
     "ignore": [],

@@ -12,6 +12,8 @@ module.exports = {
     'space-before-function-paren': 0,
     'vue/no-v-model-argument': 0,
     'vue/multi-word-component-names': 0,
+    'vue/max-attributes-per-line': 0,
+    'vue/singleline-html-element-content-newline': 0,
     'comma-dangle': 0,
   },
 };

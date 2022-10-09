@@ -1,35 +1,34 @@
 <script setup>
-  import { reactive } from 'vue';
-  import { infinite, female, male } from '@/assets/imgs';
   import styles from './index.module.scss';
   const props = defineProps({
-    type: {
-      default: '0',
+    options: {
+      default: [],
+    },
+    modelValue: {
+      default: null,
     },
   });
-  const state = reactive({
-    select: '',
-  });
-  const list = [
-    { icon: male, text: '男' },
-    { icon: female, text: '女' },
-  ];
-  if (props.type === '1') {
-    list.push({ icon: infinite, text: '不限' });
-  }
+  const emit = defineEmits(['update:modelValue']);
+  const onChange = (value) => {
+    emit('update:modelValue', value);
+  };
 </script>
 
 <template>
   <view class="flex-row-bc">
     <view
-      v-for="item in list"
-      :key="item.text"
-      :style="{ width: props.type === '1' ? '30%' : '47%' }"
-      :class="[styles.index, { [styles.select]: state.select === item.text }]"
-      @click="state.select = item.text"
+      v-for="item in options"
+      :key="item.value"
+      :style="{ width: (1 / options.length) * 100 + '%' }"
+      :class="styles.index"
     >
-      <image :src="item.icon" class="wd-19 hg-19 mr-6" />
-      <view class="cl-black fs-15">{{ item.text }}</view>
+      <view
+        :class="[styles.item_box, { [styles.select]: props.modelValue === item.value }]"
+        @click="onChange(item.value)"
+      >
+        <image v-if="item.icon" :src="item.icon" class="wd-19 hg-19 mr-6" />
+        <view class="cl-black fs-15">{{ item.text }}</view>
+      </view>
     </view>
   </view>
 </template>

@@ -9,7 +9,7 @@ function formatUrl(obj) {
 }
 
 export const config = {
-  baseUrl: 'http://api.playerfile.cn/',
+  baseUrl: 'https://api.playerfile.cn/',
   timeout: 8000,
   dataType: 'json',
   mode: 'cors',

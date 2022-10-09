@@ -1,5 +1,4 @@
 <script setup>
-  import { reactive } from 'vue';
   import styles from './index.module.scss';
   const props = defineProps({
     maxLength: {
@@ -8,17 +7,22 @@
     placeholder: {
       default: '请输入',
     },
+    modelValue: {
+      default: '',
+    },
     rows: { default: 2 },
   });
-  const state = reactive({
-    text: '',
-  });
+  const emit = defineEmits(['update:modelValue']);
+  const onInput = (val) => {
+    emit('update:modelValue', val);
+  };
 </script>
 
 <template>
   <view :class="styles.index">
     <nut-textarea
-      v-model="state.text"
+      :model-value="props.modelValue"
+      @change="onInput"
       :placeholder="props.placeholder"
       limit-show
       :rows="props.rows"
