@@ -9,7 +9,7 @@
       "list": [
         {
           "name": "pages/apply/index",
-          "pathName": "pages/order/index",
+          "pathName": "pages/orderList/index",
           "query": "",
           "launchMode": "default",
           "scene": null

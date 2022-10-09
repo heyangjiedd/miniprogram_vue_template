@@ -15,6 +15,7 @@ import {
   Input,
   TextArea,
   Cascader,
+  InfiniteLoading,
 } from '@nutui/nutui-taro';
 import { APP_TARO_ENV } from '@/config/appConfig';
 import { login } from '@/utils/service';
@@ -95,5 +96,6 @@ App.use(Button)
   .use(Picker)
   .use(Cascader)
   .use(TextArea)
+  .use(InfiniteLoading)
   .use(Input);
 export default App;
