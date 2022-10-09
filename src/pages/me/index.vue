@@ -2,11 +2,20 @@
   import Taro from '@tarojs/taro';
   import NavBar from '@/components/NavBar';
   import Cell from '@/components/ListItem/Cell';
-  import { useSystemInfoStore } from '@/store';
+  import { useSystemInfoStore, userInfoStore } from '@/store';
   import { imgItem, qrcode, notification, document, messages } from '@/assets/imgs';
+  import { login } from '@/utils/service';
   import styles from './index.module.scss';
 
   const systemInfo = useSystemInfoStore();
+  const userInfo = userInfoStore();
+  const handleLogin = () => {
+    Taro.login({
+      success: ({ code }) => {
+        login({ code });
+      },
+    });
+  };
 </script>
 
 <template>
@@ -17,7 +26,7 @@
         <view class="flex-row-bc">
           <image :src="imgItem" :class="styles.img" />
           <view class="ml-10">
-            <view class="cl-black-00 fs-17 fw-6">大师傅</view>
+            <view class="cl-black-00 fs-17 fw-6" @click="handleLogin">大师傅</view>
             <view :class="styles.phone">绑定手机号</view>
           </view>
         </view>

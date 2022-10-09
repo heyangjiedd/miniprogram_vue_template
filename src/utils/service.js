@@ -7,3 +7,4 @@ export const getPlayerType = (data) => http.get({ url: '/player/playerType', dat
 export const getProvinceCity = (data) => http.get({ url: '/player/getProvinceCity', data });
 export const getAgeSelect = (data) => http.get({ url: '/player/ageSelect', data });
 export const approvalPlayer = (data) => http.post({ url: '/player/approvalPlayer', data });
+export const login = (data) => http.postFormData({ url: '/player/login', data });
