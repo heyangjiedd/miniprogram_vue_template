@@ -11,7 +11,13 @@ const showToast = (title, params, duration = DURATION) => {
     duration,
     icon: 'none',
     mask: true,
-    ...params
+    ...params,
+    success: () => {
+      setTimeout(() => params?.success(), duration);
+    },
+    fail: () => {
+      setTimeout(() => params?.fail(), duration);
+    },
   });
 };
 
@@ -21,7 +27,13 @@ const showToastSuccess = (title, params, duration = DURATION_SUCCESS) => {
     duration,
     icon: 'success',
     mask: true,
-    ...params
+    ...params,
+    success: () => {
+      setTimeout(() => params?.success(), duration);
+    },
+    fail: () => {
+      setTimeout(() => params?.fail(), duration);
+    },
   });
 };
 
@@ -31,7 +43,13 @@ const showToastError = (title, params, duration = DURATION_SUCCESS) => {
     duration,
     icon: 'error',
     mask: true,
-    ...params
+    ...params,
+    success: () => {
+      setTimeout(() => params?.success(), duration);
+    },
+    fail: () => {
+      setTimeout(() => params?.fail(), duration);
+    },
   });
 };
 
@@ -53,5 +71,5 @@ export default {
   showToastError,
   showToastDelay,
   showToastSuccessDelay,
-  showToastErrorDelay
+  showToastErrorDelay,
 };
