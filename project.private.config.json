@@ -9,12 +9,13 @@
       "list": [
         {
           "name": "pages/apply/index",
-          "pathName": "pages/orderList/index",
+          "pathName": "pages/me/index",
           "query": "",
           "launchMode": "default",
           "scene": null
         }
       ]
     }
-  }
+  },
+  "libVersion": "2.26.1"
 }

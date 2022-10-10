@@ -14,3 +14,4 @@ export const createOrder = (data) => http.post({ url: '/player/createOrder', dat
 export const cancelOrder = (data) => http.postFormData({ url: '/player/cancelOrder', data });
 export const createPay = (data) => http.postFormData({ url: '/player/pay', data });
 export const getOrderList = (data) => http.get({ url: '/player/orderList', data });
+export const updateUser = (data) => http.postFormData({ url: '/player/updateUser', data });

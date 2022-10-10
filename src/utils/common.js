@@ -57,3 +57,25 @@ export const chooseVideoUpload = (url = '', count = 1) => {
     });
   });
 };
+
+export const compareSDKVersion = (version1 = '', version2 = '') => {
+  const v1 = version1.split('.');
+  const v2 = version2.split('.');
+  const maxLen = Math.max(v1.length, v2.length);
+  while (v1.length < maxLen) {
+    v1.push('0');
+  }
+  while (v2.length < maxLen) {
+    v2.push('0');
+  }
+  for (let i = 0; i < maxLen; i++) {
+    const num1 = parseInt(v1[i]);
+    const num2 = parseInt(v2[i]);
+    if (num1 > num2) {
+      return 1;
+    } else if (num1 < num2) {
+      return -1;
+    }
+  }
+  return 0;
+};

@@ -6,7 +6,7 @@
 <template>
   <view class="flex-row-bc">
     <view class="flex-row-cc">
-      <image :src="icon" class="wd-23 hg-23 mr-8" />
+      <image v-show="icon" :src="icon" class="wd-23 hg-23 mr-8" />
       <text class="cl-black fs-19 fw-6">{{ props.text }}</text>
     </view>
     <view class="bg-gray p-7 brs-8 flex-row" @click="$emit('close')">
