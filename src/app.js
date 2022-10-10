@@ -49,10 +49,15 @@ const App = createApp({
   setup() {
     // 静默登录
     onMounted(() => {
-      Taro.login({
-        success: ({ code }) => {
-          login({ code }).then(({ accessToken }) => {
-            Taro.setStorageSync('token', accessToken.token);
+      Taro.checkSession({
+        success: () => {},
+        fail: () => {
+          Taro.login({
+            success: ({ code }) => {
+              login({ code }).then(({ accessToken }) => {
+                Taro.setStorageSync('token', accessToken.token);
+              });
+            },
           });
         },
       });
