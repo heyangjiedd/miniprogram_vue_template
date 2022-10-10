@@ -4,14 +4,16 @@
   import Cell from '@/components/ListItem/Cell';
   import { useSystemInfoStore, userInfoStore } from '@/store';
   import { imgItem, qrcode, notification, document, messages } from '@/assets/imgs';
-  import { login } from '@/utils/service';
-  import { ORDER_LIST_INDEX } from '@/config/path';
+  import { ORDER_LIST_INDEX, NOTIFY_LIST_INDEX } from '@/config/path';
   import styles from './index.module.scss';
 
   const systemInfo = useSystemInfoStore();
   const userInfo = userInfoStore();
   const handleClickOrder = () => {
     Taro.fun.navigateTo({ url: ORDER_LIST_INDEX });
+  };
+  const handleClickNotify = () => {
+    Taro.fun.navigateTo({ url: NOTIFY_LIST_INDEX });
   };
   const handleClickCall = () => {
     Taro.makePhoneCall({ phoneNumber: '13402842722' });
@@ -37,7 +39,14 @@
           </view>
         </view>
       </view>
-      <Cell :icon="notification" title="通知" count="6" notice="有人接单了喔" class="mt-11" @click="handleClickOrder" />
+      <Cell
+        :icon="notification"
+        title="通知"
+        count="6"
+        notice="有人接单了喔"
+        class="mt-11"
+        @click="handleClickNotify"
+      />
       <Cell :icon="document" title="我的订单" class="mt-11" @click="handleClickOrder" />
       <Cell :icon="messages" title="联系客服" class="mt-11" @click="handleClickCall" />
     </view>

@@ -1,4 +1,4 @@
-import { createApp } from 'vue';
+import { createApp, onMounted } from 'vue';
 import Taro from '@tarojs/taro';
 import { createPinia } from 'pinia';
 import {
@@ -44,16 +44,19 @@ const App = createApp({
         systemInfo.setData(res);
       },
     });
-    Taro.login({
-      success: ({ code }) => {
-        login({ code }).then(({ accessToken }) => {
-          Taro.setStorageSync('token', accessToken.token);
-        });
-      },
-    });
     this.checkUpdateVersion();
   },
   setup() {
+    // 静默登录
+    onMounted(() => {
+      Taro.login({
+        success: ({ code }) => {
+          login({ code }).then(({ accessToken }) => {
+            Taro.setStorageSync('token', accessToken.token);
+          });
+        },
+      });
+    });
     const checkUpdateVersion = () => {
       // eslint-disable-next-line no-undef
       const updateManager = wx.getUpdateManager();

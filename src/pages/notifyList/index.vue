@@ -1,6 +1,7 @@
 <script setup>
   import Taro from '@tarojs/taro';
   import { more } from '@/assets/imgs';
+  import { ORDER_LIST_INDEX } from '@/config/path';
   import styles from './index.module.scss';
   const list = [
     {
@@ -18,6 +19,9 @@
       ],
     },
   ];
+  const handleClickOrder = () => {
+    Taro.fun.navigateTo({ url: ORDER_LIST_INDEX });
+  };
 </script>
 
 <template>
@@ -28,7 +32,7 @@
         <view class="cl-black fs-15 fw-6 mb-4">{{ it.title }}</view>
         <view class="flex-row align-items-center">
           <view class="cl-gray-7b fs-13">{{ it.desc }}</view>
-          <image v-if="it.more" :src="more" class="wd-17 hg-17" />
+          <img v-if="it.more" :src="more" class="wd-17 hg-17" @click="handleClickOrder" />
         </view>
       </view>
     </view>
