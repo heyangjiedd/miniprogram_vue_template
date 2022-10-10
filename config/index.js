@@ -31,6 +31,7 @@ const config = {
     resource: [resolve(__dirname, '..', 'src/styles/_var.scss'), resolve(__dirname, '..', 'src/styles/_mixins.scss')],
   },
   mini: {
+    miniCssExtractPluginOption: { ignoreOrder: true },
     postcss: {
       pxtransform: {
         enable: true,
