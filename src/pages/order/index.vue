@@ -58,12 +58,23 @@
     <NavBar :isBack="true" />
     <view :class="styles.item_box">
       <view class="flex-row align-items-center mb-15 fs-19 fw-6">
-        <image v-show="props.data.sex" :src="info.sex === '男' ? male : female" class="wd-17 hg-17" />
+        <image v-show="info.sex" :src="info.sex === '男' ? male : female" class="wd-17 hg-17" />
         <text class="ml-4">{{ info.nickname }}</text>
         <text class="ml-6">{{ info.age }}岁</text>
       </view>
       <view :class="styles.img_box">
-        <image v-for="it in info.playerLifeList" :key="it" :src="it.url" :class="styles.img" />
+        <img
+          v-for="it in info.playerLifeList"
+          :key="it"
+          :src="it.url"
+          :class="styles.img"
+          @click="
+            Taro.previewImage({
+              urls: info.playerLifeList.map((item) => item.url),
+              current: it.url,
+            })
+          "
+        />
       </view>
       <view class="fs-15 cl-black mt-5 lh-21">
         {{ info.profile }}
