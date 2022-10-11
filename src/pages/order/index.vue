@@ -46,7 +46,7 @@
     Taro.requestPayment({
       ...resp,
       success: () => {
-        state.show = false;
+        state.showNotice = true;
       },
     });
   };
@@ -124,7 +124,9 @@
       <nut-popup round v-model:visible="state.showNotice">
         <view :class="styles.modal_box">
           <image :src="imgItem" class="wd-138 hg-138" />
-          <view class="cl-black fs-13 lh-23 mt-10">你的陪玩官正在赶来的路你的陪玩官正在赶来的路上上</view>
+          <view class="cl-black fs-13 lh-23 mt-10"
+            >您的陪玩官正在赶来的路上,将通过您在个人页面上传的二维码添加您的微信，与您取得联系，请注意查收</view
+          >
           <SimpleButton
             text="我知道了"
             :style="{ width: '100%' }"

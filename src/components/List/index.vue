@@ -1,6 +1,7 @@
 <script setup>
   import { onBeforeMount, ref, watch } from 'vue';
   import styles from './index.module.scss';
+  const PAGE_NO = 10;
   const props = defineProps(['fetchApi', 'params']);
   let hasMore = ref(true);
   let pageNo = ref(1);
@@ -8,7 +9,7 @@
   const loadMore = async (done) => {
     const { records = [], current, pages } = await props.fetchApi({
       pageNo: pageNo + 1,
-      pageSize: 10,
+      pageSize: PAGE_NO,
       ...props.params,
     });
     list = [...list, ...records];
@@ -16,20 +17,24 @@
     if (pages === current) hasMore = false;
     done();
   };
-
-  const resetFetch = async () => {
+  // 重置查询
+  const resetFetch = async (pageSize = PAGE_NO) => {
     pageNo = 1;
     hasMore = true;
-    const { records = [], current, pages } = await props.fetchApi({ ...props.params });
+    const { records = [], current, pages } = await props.fetchApi({ ...props.params, pageNo, pageSize });
     list = records || [];
     if (pages === current) hasMore = false;
   };
+  // 刷新数据
+  const refresh = () => resetFetch(pageNo * PAGE_NO);
 
   watch(() => props.params, resetFetch);
 
   onBeforeMount(() => {
     resetFetch();
   });
+
+  defineExpose({ refresh });
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script setup>
   import Taro from '@tarojs/taro';
-  import { reactive, onMounted, ref } from 'vue';
+  import { reactive, ref } from 'vue';
   import dayjs from 'dayjs';
   import NavBar from '@/components/NavBar';
   import Info from '@/components/ListItem/Info';
@@ -18,8 +18,7 @@
   const state = reactive({
     tabValue: 0,
   });
-  const fetchApi = (params) => getOrderList({ ...params, status: state.tabValue });
-
+  const listRef = ref(null);
   const onChange = ({ paneKey }) => {
     state.tabValue = +paneKey;
   };
@@ -31,9 +30,7 @@
       });
       Taro.requestPayment({
         ...resp,
-        success: () => {
-          fetchApi();
-        },
+        success: listRef.value.refresh,
       });
     } else {
       Taro.showModal({
@@ -41,9 +38,7 @@
         content: '确认取消该订单？',
         success: function(res) {
           if (res.confirm) {
-            cancelOrder({ orderId: data.id }).then((res) => {
-              fetchApi();
-            });
+            cancelOrder({ orderId: data.id }).then(listRef.value.refresh);
           }
         },
       });
@@ -57,7 +52,7 @@
 <template>
   <view :class="styles.index" :style="{ paddingTop: systemInfo.data.navBarHeight + 'px' }">
     <NavBar :isBack="true" />
-    <List :fetchApi="getOrderList" :params="{ status: state.tabValue }">
+    <List :fetchApi="getOrderList" :params="{ status: state.tabValue }" ref="listRef">
       <template #header>
         <nut-tabs v-model="state.tabValue" background="#ffffff" color="#333333" @change="onChange">
           <nut-tabpane title="发布中" :pane-key="0"> </nut-tabpane>
