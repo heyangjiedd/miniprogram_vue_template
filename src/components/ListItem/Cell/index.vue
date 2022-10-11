@@ -1,7 +1,7 @@
 <script setup>
   import { more } from '@/assets/imgs';
   import styles from './index.module.scss';
-  const props = defineProps(['icon', 'title', 'count', 'notice']);
+  defineProps(['icon', 'title', 'count', 'notice']);
 </script>
 
 <template>

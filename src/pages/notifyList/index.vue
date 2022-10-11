@@ -1,40 +1,36 @@
 <script setup>
   import Taro from '@tarojs/taro';
+  import dayjs from 'dayjs';
   import { more } from '@/assets/imgs';
-  import { ORDER_LIST_INDEX } from '@/config/path';
+  import { ORDER_LIST_INDEX, ORDER_INDEX } from '@/config/path';
+  import List from '@/components/List';
+  import { getMessageList } from '@/utils/service';
   import styles from './index.module.scss';
-  const list = [
-    {
-      time: '8-14 03:24',
-      list: [
-        { title: '有人接单了哦', desc: '看看是谁吧', more: true },
-        { title: '你已选择xx陪玩官，订单已生成', desc: '陪玩官主页', more: true },
-      ],
-    },
-    {
-      time: '8-14 03:51',
-      list: [
-        { title: '你收到一条客服消息', desc: '你于xx年xx月xx日发布的征集在xx年xx月xx日' },
-        { title: '通知', desc: '你于xx年xx月xx日发布的征集在xx年xx月xx日' },
-      ],
-    },
-  ];
-  const handleClickOrder = () => {
-    Taro.fun.navigateTo({ url: ORDER_LIST_INDEX });
+
+  const handleClickOrder = ({ type, objectId }) => {
+    if (type === 1) {
+      Taro.fun.navigateTo({ url: ORDER_LIST_INDEX });
+    } else if (type === 2) {
+      Taro.fun.navigateTo({ url: ORDER_INDEX, params: { playerId: objectId } });
+    }
   };
 </script>
 
 <template>
-  <view :class="styles.index">
-    <view v-for="item in list" :key="item.time" class="mb-11">
-      <view class="cl-gray-aa fs-13">{{ item.time }}</view>
-      <view v-for="it in item.list" :key="it.title" :class="styles.box_item">
-        <view class="cl-black fs-15 fw-6 mb-4">{{ it.title }}</view>
-        <view class="flex-row align-items-center">
-          <view class="cl-gray-7b fs-13">{{ it.desc }}</view>
-          <img v-if="it.more" :src="more" class="wd-17 hg-17" @click="handleClickOrder" />
+  <List :fetchApi="getMessageList">
+    <template #item="{data}">
+      <view :class="styles.index">
+        <view :class="styles.box_item">
+          <view class="cl-black fs-15 fw-6 mb-4">{{ data.title }}</view>
+          <view class="flex-row align-items-center" @click="handleClickOrder(data)">
+            <view class="cl-gray-7b fs-13">{{ data.content }}</view>
+            <view class="cl-gray-7b fs-13" v-if="data.type === 1">看看我是谁</view>
+            <view class="cl-gray-7b fs-13" v-if="data.type === 2">陪玩官主页</view>
+            <img v-if="data.type === 1 || data.type === 2" :src="more" class="wd-17 hg-17" />
+          </view>
+          <view class="cl-gray-aa fs-13 mt-8">{{ dayjs(data.createTime).format('YYYY-MM-DD HH:mm:ss') }}</view>
         </view>
       </view>
-    </view>
-  </view>
+    </template>
+  </List>
 </template>

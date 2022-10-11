@@ -1,21 +1,25 @@
 <script setup>
-  import Taro from '@tarojs/taro';
-  import { reactive } from 'vue';
+  import Taro, { useDidShow } from '@tarojs/taro';
+  import { onMounted, reactive } from 'vue';
   import NavBar from '@/components/NavBar';
   import Cell from '@/components/ListItem/Cell';
   import SimpleButton from '@/components/Button/Simple';
   import CloseButton from '@/components/Button/Close';
   import { useSystemInfoStore, userInfoStore } from '@/store';
-  import { imgItem, qrcode, notification, document, messages } from '@/assets/imgs';
+  import { qrcode, notification, document, messages } from '@/assets/imgs';
   import { ORDER_LIST_INDEX, NOTIFY_LIST_INDEX } from '@/config/path';
   import { chooseImageUpload } from '@/utils/common';
-  import { uploadPictureUrl, updateUser } from '@/utils/service';
+  import { uploadPictureUrl, updateUser, getService, getMessageCount } from '@/utils/service';
   import styles from './index.module.scss';
 
   const systemInfo = useSystemInfoStore();
   const userInfo = userInfoStore();
   const state = reactive({
     show: false,
+    content: '',
+    tips: '',
+    contentMessage: '',
+    count: 0,
   });
   const handleClickOrder = () => {
     Taro.fun.navigateTo({ url: ORDER_LIST_INDEX });
@@ -24,7 +28,7 @@
     Taro.fun.navigateTo({ url: NOTIFY_LIST_INDEX });
   };
   const handleClickCall = () => {
-    Taro.makePhoneCall({ phoneNumber: '13402842722' });
+    Taro.fun.setClipboardData(state.content, { copyTxt: state.tips });
   };
   const handleUpload = async () => {
     const res = await chooseImageUpload(uploadPictureUrl, 1);
@@ -44,6 +48,18 @@
       },
     });
   };
+  onMounted(() => {
+    getService().then((res) => {
+      state.content = res.content;
+      state.tips = res.tips;
+    });
+  });
+  useDidShow(() => {
+    getMessageCount().then((res) => {
+      state.contentMessage = res.content;
+      state.count = res.count;
+    });
+  });
 </script>
 
 <template>
@@ -73,8 +89,8 @@
       <Cell
         :icon="notification"
         title="通知"
-        count="6"
-        notice="有人接单了喔"
+        :count="state.count"
+        :notice="!!state.count ? state.contentMessage : ''"
         class="mt-11"
         @click="handleClickNotify"
       />

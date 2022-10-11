@@ -15,3 +15,6 @@ export const cancelOrder = (data) => http.postFormData({ url: '/player/cancelOrd
 export const createPay = (data) => http.postFormData({ url: '/player/pay', data });
 export const getOrderList = (data) => http.get({ url: '/player/orderList', data });
 export const updateUser = (data) => http.postFormData({ url: '/player/updateUser', data });
+export const getService = (data) => http.get({ url: '/player/service', data });
+export const getMessageCount = (data) => http.get({ url: '/player/messageCount', data });
+export const getMessageList = (data) => http.get({ url: '/player/messageList', data });

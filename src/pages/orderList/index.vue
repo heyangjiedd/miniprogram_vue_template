@@ -24,9 +24,13 @@
   };
   const handleCancelOrder = async (data, isPay) => {
     if (isPay) {
+      const playerIdList = data.playerList.filter((item) => item.selected).map((item) => item.playerId);
+      if (playerIdList.length > data.playerCount) {
+        return Taro.fun.showToastError('当前选择的陪玩官太多啦');
+      }
       const resp = await createPay({
         orderId: data.id,
-        playerIdList: data.playerList.filter((item) => item.selected).map((item) => item.playerId),
+        playerIdList,
       });
       Taro.requestPayment({
         ...resp,

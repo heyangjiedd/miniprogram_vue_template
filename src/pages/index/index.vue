@@ -12,7 +12,6 @@
   import { useSystemInfoStore } from '@/store';
   import { APPLY_INDEX } from '@/config/path';
   import { money } from '@/assets/imgs';
-  import TaroFun from '@/utils/overrideTaroFun';
   import { getBanner, getPlayerType, createOrder, createPay } from '@/utils/service';
   import { SEX_TYPE_LIST, TIME_NUMBER_LIST, PERSON_NUMBER_LIST } from '@/config/constant';
 
@@ -57,7 +56,7 @@
       playerType: state.item?.name,
     });
     await createPay({ orderId: res.id });
-    TaroFun.showToast('下单成功');
+    Taro.fun.showToast('下单成功');
     // Taro.requestSubscribeMessage({
     //   tmplIds: [],
     // });

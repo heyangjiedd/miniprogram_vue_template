@@ -3,30 +3,30 @@
   import styles from './index.module.scss';
   const PAGE_NO = 10;
   const props = defineProps(['fetchApi', 'params']);
-  let hasMore = ref(true);
-  let pageNo = ref(1);
-  let list = ref([]);
+  const hasMore = ref(true);
+  const pageNo = ref(1);
+  const list = ref([]);
   const loadMore = async (done) => {
     const { records = [], current, pages } = await props.fetchApi({
-      pageNo: pageNo + 1,
+      pageNo: pageNo.value + 1,
       pageSize: PAGE_NO,
       ...props.params,
     });
-    list = [...list, ...records];
-    pageNo = current;
-    if (pages === current) hasMore = false;
+    list.value = [...list.value, ...records];
+    pageNo.value = current;
+    if (pages === current) hasMore.value = false;
     done();
   };
   // 重置查询
   const resetFetch = async (pageSize = PAGE_NO) => {
-    pageNo = 1;
-    hasMore = true;
-    const { records = [], current, pages } = await props.fetchApi({ ...props.params, pageNo, pageSize });
-    list = records || [];
-    if (pages === current) hasMore = false;
+    pageNo.value = 1;
+    hasMore.value = true;
+    const { records = [], current, pages } = await props.fetchApi({ ...props.params, pageNo: pageNo.value, pageSize });
+    list.value = records || [];
+    if (pages === current) hasMore.value = false;
   };
   // 刷新数据
-  const refresh = () => resetFetch(pageNo * PAGE_NO);
+  const refresh = () => resetFetch(pageNo.value * PAGE_NO);
 
   watch(
     () => props.params,
