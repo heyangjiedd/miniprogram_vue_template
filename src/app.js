@@ -20,7 +20,7 @@ import {
 import { APP_TARO_ENV } from '@/config/appConfig';
 import { login } from '@/utils/service';
 import TaroFun from '@/utils/overrideTaroFun';
-import { useSystemInfoStore } from '@/store';
+import { useSystemInfoStore, userInfoStore } from '@/store';
 
 import './app.scss';
 
@@ -49,15 +49,12 @@ const App = createApp({
   setup() {
     // 静默登录
     onMounted(() => {
-      Taro.checkSession({
-        success: () => {},
-        fail: () => {
-          Taro.login({
-            success: ({ code }) => {
-              login({ code }).then(({ accessToken }) => {
-                Taro.setStorageSync('token', accessToken.token);
-              });
-            },
+      const userInfo = userInfoStore();
+      Taro.login({
+        success: ({ code }) => {
+          login({ code }).then((data) => {
+            userInfo.setData(data);
+            Taro.setStorageSync('token', data.accessToken.token);
           });
         },
       });
