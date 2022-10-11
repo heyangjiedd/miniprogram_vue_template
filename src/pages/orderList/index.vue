@@ -30,7 +30,12 @@
       });
       Taro.requestPayment({
         ...resp,
-        success: listRef.value.refresh,
+        success: () => {
+          // Taro.requestSubscribeMessage({
+          //   tmplIds: [],
+          // });
+          listRef.value.refresh();
+        },
       });
     } else {
       Taro.showModal({

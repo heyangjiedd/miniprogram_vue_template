@@ -8,14 +8,12 @@
   import { useSystemInfoStore, userInfoStore } from '@/store';
   import { imgItem, qrcode, notification, document, messages } from '@/assets/imgs';
   import { ORDER_LIST_INDEX, NOTIFY_LIST_INDEX } from '@/config/path';
-  import { chooseImageUpload, compareSDKVersion } from '@/utils/common';
+  import { chooseImageUpload } from '@/utils/common';
   import { uploadPictureUrl, updateUser } from '@/utils/service';
   import styles from './index.module.scss';
 
   const systemInfo = useSystemInfoStore();
   const userInfo = userInfoStore();
-  const version = compareSDKVersion('2.21.2', systemInfo.data.SDKVersion);
-  console.log(version);
   const state = reactive({
     show: false,
   });
@@ -30,20 +28,20 @@
   };
   const handleUpload = async () => {
     const res = await chooseImageUpload(uploadPictureUrl, 1);
-    await updateUser({ wechatUrl: res[0] });
-    userInfo.setData({ ...userInfo.data, wechatUrl: res[0] });
+    const resp = await updateUser({ wechatUrl: res[0] });
+    userInfo.setData({ ...userInfo.data, ...resp });
   };
-  const getPhoneNumber = (data) => {
-    if (version <= 0) {
-      console.log(data.detail.code);
-    } else {
-      console.log(data.detail);
-    }
+  const getPhoneNumber = async (data) => {
+    const resp = await updateUser({ code: data.detail.code });
+    userInfo.setData({ ...userInfo.data, ...resp });
   };
   const handleUser = () => {
     Taro.getUserProfile({
-      desc: '展示Ixia',
-      success: (data) => {},
+      desc: '仅用于展示',
+      success: async (data) => {
+        const resp = await updateUser({ avatar: data.userInfo.avatarUrl, nickname: data.userInfo.nickName });
+        userInfo.setData({ ...userInfo.data, ...resp });
+      },
     });
   };
 </script>
@@ -54,10 +52,13 @@
     <view :class="styles.box">
       <view class="flex-row-bc">
         <view class="flex-row-bc">
-          <image :src="imgItem" :class="styles.img" />
+          <img :src="userInfo.data?.avatar" :class="styles.img" @click="handleUser" />
           <view class="ml-10">
-            <view class="cl-black-00 fs-17 fw-6" @click="handleUser">大师傅</view>
-            <button open-type="getPhoneNumber" @getphonenumber="getPhoneNumber" :class="styles.phone">
+            <view class="cl-black-00 fs-17 fw-6" @click="handleUser">{{
+              userInfo.data?.nickname || '获取用户名'
+            }}</view>
+            <view v-if="userInfo.data?.phone" :class="styles.phone">{{ userInfo.data?.phone }}</view>
+            <button v-else open-type="getPhoneNumber" @getphonenumber="getPhoneNumber" :class="styles.phone">
               绑定手机号
             </button>
           </view>

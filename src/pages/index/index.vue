@@ -58,6 +58,9 @@
     });
     await createPay({ orderId: res.id });
     TaroFun.showToast('下单成功');
+    // Taro.requestSubscribeMessage({
+    //   tmplIds: [],
+    // });
     state.show = false;
   };
 </script>

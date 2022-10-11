@@ -47,6 +47,9 @@
       ...resp,
       success: () => {
         state.showNotice = true;
+        // Taro.requestSubscribeMessage({
+        //   tmplIds: [],
+        // });
       },
     });
   };

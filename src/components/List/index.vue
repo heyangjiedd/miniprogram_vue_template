@@ -28,7 +28,10 @@
   // 刷新数据
   const refresh = () => resetFetch(pageNo * PAGE_NO);
 
-  watch(() => props.params, resetFetch);
+  watch(
+    () => props.params,
+    () => resetFetch(),
+  );
 
   onBeforeMount(() => {
     resetFetch();
