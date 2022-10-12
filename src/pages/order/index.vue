@@ -11,7 +11,7 @@
   import SelectSimple from '@/components/Select/Simple';
   import { TIME_NUMBER_LIST } from '@/config/constant';
   import { useSystemInfoStore } from '@/store';
-  import { imgItem, female, male, money, clock } from '@/assets/imgs';
+  import { paySuccess, female, male, money, clock } from '@/assets/imgs';
   import { getPlayerDetail, createOrder, createPay } from '@/utils/service';
   import styles from './index.module.scss';
   const state = reactive({
@@ -126,7 +126,7 @@
       </nut-popup>
       <nut-popup round v-model:visible="state.showNotice">
         <view :class="styles.modal_box">
-          <image :src="imgItem" class="wd-138 hg-138" />
+          <image :src="paySuccess" class="wd-111 hg-135" />
           <view class="cl-black fs-13 lh-23 mt-10"
             >您的陪玩官正在赶来的路上,将通过您在个人页面上传的二维码添加您的微信，与您取得联系，请注意查收</view
           >

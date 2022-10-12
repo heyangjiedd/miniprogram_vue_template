@@ -37,3 +37,4 @@ export { default as reload } from './reload.png';
 export { default as drop } from './drop.png';
 export { default as add } from './add.png';
 export { default as remove } from './remove.png';
+export { default as paySuccess } from './pay_success.png';
