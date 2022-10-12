@@ -1,12 +1,18 @@
 .index {
   .box {
     margin: 5px 15px 0 15px;
-    .img {
+    .img_box {
       width: 57px;
       height: 57px;
       border-radius: 50%;
       background: $bg-gray;
+      .img {
+        width: 57px;
+        height: 57px;
+        border-radius: 50%;
+      }
     }
+
     .qrcode {
       width: 42px;
       height: 42px;

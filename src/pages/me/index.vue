@@ -68,7 +68,9 @@
     <view :class="styles.box">
       <view class="flex-row-bc">
         <view class="flex-row-bc">
-          <img :src="userInfo.data?.avatar" :class="styles.img" @click="handleUser" />
+          <view :class="styles.img_box" @click="handleUser">
+            <image v-show="userInfo.data?.avatar" :src="userInfo.data?.avatar" :class="styles.img" />
+          </view>
           <view class="ml-10">
             <view class="cl-black-00 fs-17 fw-6" @click="handleUser">{{
               userInfo.data?.nickname || '获取用户名'
