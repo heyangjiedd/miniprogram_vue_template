@@ -14,6 +14,10 @@
       Taro.fun.navigateTo({ url: ORDER_INDEX, params: { playerId: objectId } });
     }
   };
+  Taro.showShareMenu({
+    withShareTicket: true,
+    menus: ['shareAppMessage', 'shareTimeline'],
+  });
 </script>
 
 <template>

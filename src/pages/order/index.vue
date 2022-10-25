@@ -54,6 +54,10 @@
     });
   };
   const systemInfo = useSystemInfoStore();
+  Taro.showShareMenu({
+    withShareTicket: true,
+    menus: ['shareAppMessage', 'shareTimeline'],
+  });
 </script>
 
 <template>

@@ -60,6 +60,10 @@
       state.count = res.count;
     });
   });
+  Taro.showShareMenu({
+    withShareTicket: true,
+    menus: ['shareAppMessage', 'shareTimeline'],
+  });
 </script>
 
 <template>

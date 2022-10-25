@@ -12,6 +12,10 @@
   const handleGo = (data) => {
     Taro.fun.navigateTo({ url: ORDER_INDEX, params: { playerId: data.id } });
   };
+  Taro.showShareMenu({
+    withShareTicket: true,
+    menus: ['shareAppMessage', 'shareTimeline'],
+  });
 </script>
 
 <template>
