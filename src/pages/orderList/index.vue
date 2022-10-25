@@ -83,7 +83,7 @@
             :value="dayjs(data.endTime).format('YYYY-MM-DD HH:mm:ss')"
           />
           <LabelValue label="金额" :value="`¥ ${data.price / 100}`" />
-          <LabelValue v-show="state.tabValue === 0" label="见面地点" :value="data.detailAddress" />
+          <LabelValue v-show="state.tabValue === 0" label="位置" :value="data.detailAddress" />
           <LabelValue v-show="state.tabValue === 0" label="类型" :value="data.playerType" />
           <LabelValue :label="state.tabValue === 0 ? '已接单陪玩官' : '陪玩官'" />
           <view :class="styles.infos">

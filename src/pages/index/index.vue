@@ -134,15 +134,20 @@
         </view>
         <view class="mt-10 mb-5 cl-black fs-15 fw-6">性别</view>
         <SelectTag v-model="modalState.sex" :options="SEX_TYPE_LIST" />
-        <view class="mt-10 mb-5 cl-black fs-15 fw-6">见面地点</view>
+        <view class="mt-10 mb-5 cl-black fs-15 fw-6">位置</view>
         <Location v-model="modalState.detailAddress" />
-        <view class="mt-10 mb-5 cl-black fs-15 fw-6">支付金额</view>
+        <view class="mt-10 mb-5 cl-black fs-15 fw-6">¥</view>
         <SelectInput type="number" v-model.number="modalState.price">
           <template #prefix>
             <image :src="money" class="wd-19 hg-19" />
           </template>
         </SelectInput>
-        <SimpleFullButton text="下单" :isBlack="true" class="mt-15" @click="handleClickSubmit" />
+        <SimpleFullButton
+          :text="`一起${state.item?.name}吧`"
+          :isBlack="true"
+          class="mt-15"
+          @click="handleClickSubmit"
+        />
       </view>
     </nut-popup>
   </view>

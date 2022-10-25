@@ -15,11 +15,12 @@
   });
   const dateChange = ({ selectedValue }) => {
     const dateStr = selectedValue.join('-');
-    emit('update:modelValue', new Date(`${dateStr} ${dayjs(props.modelValue).format('HH:mm:ss')}`));
+    emit('update:modelValue', new Date(`${dateStr} ${dayjs(props.modelValue).format('HH:mm:00')}`));
   };
   const timeChange = ({ selectedValue }) => {
     const timeStr = selectedValue.join(':');
-    emit('update:modelValue', new Date(`${dayjs(props.modelValue).format('YYYY-MM-DD')} ${timeStr}`));
+    const date = dayjs(`${dayjs(props.modelValue).format('YYYY-MM-DD')} ${timeStr}`).format('YYYY-MM-DD HH:mm:00');
+    emit('update:modelValue', new Date(date));
   };
   const timeTxt = computed(() => (dayjs(props.modelValue).get('hour') > 12 ? '下午' : '上午'));
 </script>
@@ -36,7 +37,7 @@
     <view :class="styles.index" @click="state.timeShow = true">
       <view class="flex-row">
         <image :src="clock" class="wd-19 hg-19 mr-6" />
-        <view class="cl-black fs-15">{{ timeTxt }}{{ dayjs(props.modelValue).format('HH:mm:ss') }}</view>
+        <view class="cl-black fs-15">{{ timeTxt }}{{ dayjs(props.modelValue).format('HH:mm') }}</view>
       </view>
       <image :src="drop" class="wd-13 hg-13" />
     </view>
